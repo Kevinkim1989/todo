@@ -46,6 +46,7 @@ function addTodosToPage() {
         var todoItem = todos[i];
         var li = document.createElement("li");
         li.innerHTML =
+            // todoItem.who + " needs to " + todoItem.task + " by " + todoItem.dueDate;
             todoItem.who + " needs to " + todoItem.task + " by " + todoItem.dueDate;
         ul.appendChild(li);
     }
