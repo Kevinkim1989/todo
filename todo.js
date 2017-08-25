@@ -10,11 +10,10 @@ function getTodoData() {
     var request = new XMLHttpRequest();
     request.open("GET", "todo.json");
     request.onreadystatechange = function() {
-        var listDiv = document.getElementById("todoList");
         if (this.readyState == this.DONE && this.status == 200) {
             if (this.responseText) {
-                listDiv.innerHTML = this.responseText;
                 parseTodoItems(this.responseText);
+                addTodosToPage();
             }
             else {
                 console.log("Error: Data is empty");
@@ -39,4 +38,15 @@ function parseTodoItems(todoJSON) {
     }
     console.log("To-do array: ");
     console.log(todos);
-}  
+}
+
+function addTodosToPage() {
+    var ul = document.getElementById("todoList");
+    for (var i = 0; i < todos.length; i++) {
+        var todoItem = todos[i];
+        var li = document.createElement("li");
+        li.innerHTML =
+            todoItem.who + " needs to " + todoItem.task + " by " + todoItem.dueDate;
+        ul.appendChild(li);
+    }
+}
